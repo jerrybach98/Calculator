@@ -7,10 +7,13 @@
     <title>Calculator</title>
     <link rel="stylesheet" href="styles.css">
     <script src="index.js" defer></script>
+    <link rel="icon" type="image/png" href="./images/logo2.png">
 </head>
 <body>
   <div class="calculator">
-    <div class="display">123</div>
+    <div class="display">
+      <div class="currentDisplay">0</div>
+    </div>
 
     <div class="rowOne">
       <button class="numBtn" id="1">1</button>
@@ -25,15 +28,15 @@
       <button class="numBtn" id="8">9</button>
     </div>
     <div class="rowThree">
-      <button id="0">0</button>
-      <button id="+">+</button>
-      <button id="-">-</button>
-      <button id="/">÷</button>
+      <button class="numBtn" id="0">0</button>
+      <button class="operator" id="plus">+</button>
+      <button class="operator" id="minus">-</button>
+      <button class="operator" id="division">÷</button>
     </div>
     <div class="rowFour">
-      <button id="*">x</button>
-      <button id="=">=</button>
-      <button id="AC">AC</button>
+      <button class="operator" id="product">x</button>
+      <button id="equals">=</button>
+      <button id="allClear">AC</button>
     </div>
   </div>
 

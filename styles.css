@@ -25,7 +25,12 @@ button {
   border-radius: 2px;
   color: #1d2023;
   cursor: pointer;
-  font-size: 14px
+  font-size: 14px;
+  background-color: white; 
+}
+
+.operator: {
+
 }
 
 .footer {

@@ -1,7 +1,9 @@
-let firstNum = 0;
-let operator = 0;
-let secNum = 0;
+//storage variables
+let firstNum = "";
+let secNum = "";
+let operateVal = ""; 
 
+//operator functions
 function add (a,b) {
 	return a + b;
 };
@@ -15,33 +17,74 @@ function divide (a,b) {
   return a / b;
 };
 
-function operate (firstNum, operator, secNum) {
-  add (a,b);
-  subtract (a,b);
-  multiply (a,b);
-  divide (a,b);
-};
+function operate () {
+  const a = Number(firstNum);
+  const b = Number(secNum);
+  let result = 0;
+  if (operateVal === "+") {
+    result = add (a,b);
+  } 
+  else if (operateVal === "-") {
+    result = subtract (a,b);
+  } 
+  else if (operateVal === "x") {
+    result = multiply (a,b);
+  } 
+  else if (operateVal === "÷") {
+    result = divide (a,b);
+  } 
+  currentDisplay.textContent = result;
+  console.log(result);
+  firstNum = result;
+  secNum = "";
+  operateVal = ""; 
+}
+
 
 const numBtn = document.querySelectorAll(".numBtn");
-const display = document.querySelector(".display");
-
+const currentDisplay = document.querySelector(".currentDisplay");
+const operator = document.querySelectorAll(".operator");
+const allClear = document.getElementById("allClear");
+const equals = document.querySelector("#equals");
+const plus = document.getElementById("plus");
+const minus = document.getElementById("minus");
+const product = document.getElementById("product");
+const division = document.getElementById("division");
 
 numBtn.forEach(button => button.addEventListener('click', function() {
-  display.innerHTML="";
-  let numDisplay = document.createElement('p');
-    numDisplay.textContent = button.innerText;
-  display.appendChild(numDisplay);
+  if (operateVal === "") {
+    let populate = document.createElement('p');
+    currentDisplay.innerHTML="";
+    firstNum += button.innerText;
+    populate.textContent = firstNum;
+    currentDisplay.appendChild(populate);
+  } else {
+    let populate = document.createElement('p');
+    currentDisplay.innerHTML="";
+    secNum += button.innerText;
+    populate.textContent = secNum;
+    currentDisplay.appendChild(populate);
+    plus.style.backgroundColor="white";
+    minus.style.backgroundColor="white";
+    product.style.backgroundColor="white";
+    division.style.backgroundColor="white";
+  }
 }));
 
-// 5. create function that populates display, store variable for use
-// 6. make calculator work > store first number and operator chosen then operate when equal is pressed
-// 7. be able to string together several operations 12 + 7 - 5 * 3 = should yield 42
- // test if operates in pairs
- // round answers with decimals
- // pressing = before entering can cause problems  (wait for second number)
- // start fresh with clear button
- // divide by 0 = infinity / NAN
-// 8. Add a decimal button
-// 9. Add css / ui / decorations
-// 10. undo button
-// 11. keyboard support
+operator.forEach(button => button.addEventListener('click', function() {
+  operateVal = button.innerText;
+  button.style.backgroundColor="lightBlue";
+}));
+
+allClear.addEventListener('click', function() {
+  currentDisplay.innerHTML="0";
+  firstNum = "";
+  secNum = "";
+  operateVal = ""; 
+  plus.style.backgroundColor="white";
+  minus.style.backgroundColor="white";
+  product.style.backgroundColor="white";
+  division.style.backgroundColor="white";
+});
+
+equals.addEventListener('click', operate);
