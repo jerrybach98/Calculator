@@ -35,12 +35,20 @@ function operate () {
     result = divide (a,b);
   } 
   // Display result 
-  currentDisplay.textContent = result;
+  
   //Resets variables for further string calculations after equal is pressed
+  if (isNaN(result)) {
+    currentDisplay.textContent = "Error"
+    firstNum="0"
+    secNum = "";
+    operateVal = ""; 
+  } else {
+  currentDisplay.textContent = result.toLocaleString("en-US");
   firstNum = result.toString();
   secNum = "";
   operateVal = ""; 
   console.log(firstNum)
+}
 }
 
 //DOM selectors
@@ -50,6 +58,7 @@ const operator = document.querySelectorAll(".operator");
 const equals = document.querySelector("#equals");
 const allClear = document.getElementById("allClear");
 const del = document.getElementById("del");
+const sign = document.getElementById("sign");
 const plus = document.getElementById("plus");
 const minus = document.getElementById("minus");
 const product = document.getElementById("product");
@@ -65,6 +74,7 @@ numBtn.forEach(button => button.addEventListener('click', function(result) {
     }
     //Display on button press
     currentDisplay.innerHTML="";
+    //Stores button presses into variable as string
     firstNum += button.innerText;
     populate.textContent = firstNum;
     currentDisplay.appendChild(populate);
@@ -86,7 +96,6 @@ numBtn.forEach(button => button.addEventListener('click', function(result) {
   console.log(secNum)
 }));
 
-
 //Toggle background color of selected operator button
 operator.forEach(button => button.addEventListener('click', function(event, populate) {
   if (secNum !== "" && operateVal !== "") {
@@ -105,6 +114,18 @@ allClear.addEventListener('click', function() {
   secNum = "";
   operateVal = "";
   resetToggle();
+});
+
+
+sign.addEventListener('click', function() {
+  if (firstNum !== "" && operateVal === "") {
+    firstNum = (Number(firstNum) * -1).toString();
+     currentDisplay.textContent = firstNum;
+  } 
+  else if (secNum !== "" && operateVal !== "") {
+    secNum = (Number(secNum) * -1).toString();
+    currentDisplay.textContent = secNum;
+  }
 });
 
 //Operator button toggle effect reset
@@ -161,6 +182,8 @@ del.addEventListener('click', function(populate) {
   }
 });
 
+
+
 //Clicks equal button and calls operate function
 equals.addEventListener('click', function () {
   if (operateVal ==="" || secNum==="") {
@@ -171,14 +194,11 @@ equals.addEventListener('click', function () {
 );
 
 // next steps
-// delete button
-// positive negative buttons (multiply by -1)
+
 // Devide by 0 interactions
-// Round?
 // sync to keyboard
+//commas?
 // make grid even
 // decorate css
 
-
-// equal buttons interactions
-// Clear button
+//positive negative buttons (multiply by -1)
