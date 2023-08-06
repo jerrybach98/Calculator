@@ -7,7 +7,7 @@
     <title>Calculator</title>
     <link rel="stylesheet" href="styles.css">
     <script src="index.js" defer></script>
-    <link rel="icon" type="image/png" href="./images/logo2.png">
+    <link rel="icon" type="image/png" href="./images/logo.png">
 </head>
 <body>
   <div class="calculator">
@@ -17,32 +17,32 @@
 
     <div class="rowOne">
       <button id="allClear">AC</button>
-      <button id="del">Del</button>
+      <button data-key="Backspace" class="key" id="del">Del</button>
       <button id="sign">+ / -</button>
-      <button class="operator" id="division">÷</button>
+      <button data-key="/" class="operator key" id="division">÷</button>
     </div>
     <div class="rowTwo">
-      <button class="numBtn" id="7">7</button>
-      <button class="numBtn" id="8">8</button>
-      <button class="numBtn" id="9">9</button>
-      <button class="operator" id="product">x</button>
+      <button data-key="7" class="numBtn key">7</button>
+      <button data-key="8" class="numBtn key">8</button>
+      <button data-key="9" class="numBtn key">9</button>
+      <button data-key="" class="operator key" id="product">x</button>
     </div>
     <div class="rowThree">
-      <button class="numBtn" id="4">4</button>
-      <button class="numBtn" id="5">5</button>
-      <button class="numBtn" id="6">6</button>
-      <button class="operator" id="minus">-</button>
+      <button data-key="4" class="numBtn key">4</button>
+      <button data-key="5" class="numBtn key">5</button>
+      <button data-key="6" class="numBtn key">6</button>
+      <button data-key="-" class="operator key" id="minus">-</button>
     </div>
     <div class="rowFour">
-      <button class="numBtn" id="1">1</button>
-      <button class="numBtn" id="2">2</button>
-      <button class="numBtn" id="3">3</button>
-      <button class="operator" id="plus">+</button>
+      <button data-key="1" class="numBtn key" id="1btn">1</button>
+      <button data-key="2" class="numBtn key" id="2">2</button>
+      <button data-key="3" class="numBtn key" id="3">3</button>
+      <button data-key="" class="operator key"  id="plus">+</button>
     </div>
     <div class="rowFive">
-      <button class="numBtn" id="0">0</button>
-      <button class= "numBtn" id="decimal">.</button>
-      <button id="equals">=</button> 
+      <button data-key="0" class="numBtn key" id="0">0</button>
+      <button data-key="." class="numBtn key" id="decimal">.</button>
+      <button data-key="=" class="key" id="equals">=</button> 
     </div>
   </div>
 

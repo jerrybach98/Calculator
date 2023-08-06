@@ -64,6 +64,36 @@ const minus = document.getElementById("minus");
 const product = document.getElementById("product");
 const division = document.getElementById("division");
 
+//Handle keyboard inputs
+window.addEventListener('keydown', function(e) {
+    const keyboard = document.querySelector(`.key[data-key="${e.key}"]`);
+    if (keyboard) {
+      console.log(keyboard);
+      keyboard.click();1
+    } 
+    else if (e.key === "Enter") {
+      equals.click(); 
+    } 
+    else if (e.key === "Shift") {
+      shift = true;
+      console.log(shift)
+    } 
+    else if (shift === true && e.key ==="*") {
+      product.click(); 
+    } 
+    else if (shift === true && e.key ==="+") {
+      plus.click(); 
+    } 
+});
+
+//Shift keyboard press check for operators
+window.addEventListener('keyup', function(e) {
+  if (e.key === "Shift") {
+    shift = false;
+    console.log(shift)
+  }
+});
+
 numBtn.forEach(button => button.addEventListener('click', function(result) {
   // If operator value is empty, store number inputs into first number variable
   let populate = document.createElement('p');
@@ -116,13 +146,13 @@ allClear.addEventListener('click', function() {
   resetToggle();
 });
 
-
+//Sign button
 sign.addEventListener('click', function() {
   if (firstNum !== "" && operateVal === "") {
     firstNum = (Number(firstNum) * -1).toString();
      currentDisplay.textContent = firstNum;
   } 
-  else if (secNum !== "" && operateVal !== "") {
+ else if (secNum !== "" && operateVal !== "") {
     secNum = (Number(secNum) * -1).toString();
     currentDisplay.textContent = secNum;
   }
@@ -194,11 +224,6 @@ equals.addEventListener('click', function () {
 );
 
 // next steps
-
-// Devide by 0 interactions
-// sync to keyboard
-//commas?
 // make grid even
 // decorate css
-
-//positive negative buttons (multiply by -1)
+// fix toggle buttons background color
