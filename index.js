@@ -47,7 +47,6 @@ function operate () {
   firstNum = result.toString();
   secNum = "";
   operateVal = ""; 
-  console.log(firstNum)
 }
 }
 
@@ -68,15 +67,13 @@ const division = document.getElementById("division");
 window.addEventListener('keydown', function(e) {
     const keyboard = document.querySelector(`.key[data-key="${e.key}"]`);
     if (keyboard) {
-      console.log(keyboard);
-      keyboard.click();1
+      keyboard.click();
     } 
     else if (e.key === "Enter") {
       equals.click(); 
     } 
     else if (e.key === "Shift") {
       shift = true;
-      console.log(shift)
     } 
     else if (shift === true && e.key ==="*") {
       product.click(); 
@@ -90,7 +87,6 @@ window.addEventListener('keydown', function(e) {
 window.addEventListener('keyup', function(e) {
   if (e.key === "Shift") {
     shift = false;
-    console.log(shift)
   }
 });
 
@@ -108,7 +104,8 @@ numBtn.forEach(button => button.addEventListener('click', function(result) {
     firstNum += button.innerText;
     populate.textContent = firstNum;
     currentDisplay.appendChild(populate);
-    console.log(firstNum)
+    populate.style.margin = "0"
+
 
   //If operator value is pressed and has value, store data into second number variable
   } 
@@ -120,10 +117,10 @@ numBtn.forEach(button => button.addEventListener('click', function(result) {
     secNum += button.innerText;
     populate.textContent = secNum;
     currentDisplay.appendChild(populate);
+    populate.style.margin = "0"
     resetToggle();
 
   };
-  console.log(secNum)
 }));
 
 //Toggle background color of selected operator button
@@ -134,7 +131,6 @@ operator.forEach(button => button.addEventListener('click', function(event, popu
   resetToggle();
   operateVal = button.innerText;
   operatorToggle ();
-  console.log(operateVal);
 }));
 
 //Clear button to reset calculator variables and button toggles
@@ -224,6 +220,12 @@ equals.addEventListener('click', function () {
 );
 
 // next steps
-// make grid even
-// decorate css
+
+// change color on click
 // fix toggle buttons background color
+// handle screen over crowding
+// decorate css
+
+//  fix append child margins
+// make grid even
+// fix row overflow and layout 

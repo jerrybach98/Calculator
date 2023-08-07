@@ -4,20 +4,29 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #3e8de3;
+  background-color: #D3D4D7;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
   height: 100vh;
   font-size: 16px;
   color: #04060D;
+  overflow-x: hidden;
+  overflow-y: auto; 
 }
 
 .calculator {
-  border: 2px solid #0C243C;
-  margin-top: 200px;
-  width: 500px;
-  background-color: #d3d4d7;
+  margin-top: 75px;
+  margin-bottom: 10px;
+  width: 450px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  border: 3px solid black;
+  border-bottom: 5px solid black;;
+  background-color: black;
+  box-shadow: 0px 3px 8px black;
 }
 
 .display {
@@ -25,32 +34,66 @@ body {
   justify-content: end;
   align-items: center;
   font-size: 30px;
-  background-color: rgba(0, 0, 0, .75);
+  height: 85px;
+  background-color: black;
   color: white;
 }
 
 .currentDisplay {
-  margin-right: 50px;
+  margin-right: 10px;
 }
 
 button {
   margin-top: 5px;
-  height: 40px;
-  width: 100px;
-  border-radius: 2px;
+  height: 80px;
+  width: 110px;
+  border-radius: 0px;
   cursor: pointer;
-  font-size: 14px;
-  background-color: rgba(255, 255, 255, .75); 
-  border: 1px solid white;
+  font-size: 20px;
+  border: 1px solid black;
+  color: white;
   outline: none;
+  background-color: rgb(69, 69, 69);
 }
 
 button:hover {
-  background-color: rgba(255, 255, 255, .9); ;
+  background-color: rgba(255, 255, 255, .4);
 }
 
-.operator: {
+#equals {
+  background-color: #4ba2ff;
+}
 
+#equals:hover {
+  background-color: #6fb5ff;
+}
+
+#allClear,#del,.style {
+  color: rgb(241, 137, 92);
+}
+
+.operator {
+  color: #4ba2ff;
+  font-size: 28px;
+}
+
+.rowContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: -2px;
+}
+
+#double {
+  width: 220px;
 }
 
 .footer {
