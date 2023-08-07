@@ -63,23 +63,42 @@ const minus = document.getElementById("minus");
 const product = document.getElementById("product");
 const division = document.getElementById("division");
 
+//Function to set simulate mouse click on buttons when using keyboard
+function simulateClick (element) {
+  if (element===equals) {
+    element.classList.add('simulateEquals');
+    setTimeout(() => {
+      element.classList.remove('simulateEquals');
+  }, 200);
+  } 
+  else {
+    element.classList.add('simulateClick');
+    setTimeout(() => {
+      element.classList.remove('simulateClick');
+  }, 200)};
+}
+
 //Handle keyboard inputs
 window.addEventListener('keydown', function(e) {
     const keyboard = document.querySelector(`.key[data-key="${e.key}"]`);
     if (keyboard) {
       keyboard.click();
+      simulateClick (keyboard);
     } 
     else if (e.key === "Enter") {
       equals.click(); 
+      simulateClick (equals);
     } 
     else if (e.key === "Shift") {
       shift = true;
     } 
     else if (shift === true && e.key ==="*") {
       product.click(); 
+      simulateClick (product);
     } 
     else if (shift === true && e.key ==="+") {
       plus.click(); 
+      simulateClick (plus);
     } 
 });
 
@@ -156,25 +175,25 @@ sign.addEventListener('click', function() {
 
 //Operator button toggle effect reset
 function resetToggle () {
-  plus.style.backgroundColor="white";
-  minus.style.backgroundColor="white";
-  product.style.backgroundColor="white";
-  division.style.backgroundColor="white";
+  plus.classList.remove('hovered')
+  minus.classList.remove('hovered')
+  product.classList.remove('hovered')
+  division.classList.remove('hovered')
 }
 
 // Toggles operator button
 function operatorToggle () {
   if (operateVal === "+") {
-    plus.style.backgroundColor="lightBlue";
+    plus.classList.add('hovered')
   } 
   else if (operateVal === "-") {
-    minus.style.backgroundColor="lightBlue";
+    minus.classList.add('hovered')
   } 
   else if (operateVal === "x") {
-    product.style.backgroundColor="lightBlue";
+    product.classList.add('hovered')
   } 
   else if (operateVal === "÷") {
-    division.style.backgroundColor="lightBlue";
+    division.classList.add('hovered')
   } 
 }
 
@@ -220,12 +239,8 @@ equals.addEventListener('click', function () {
 );
 
 // next steps
+// Prevent number overflow
 
-// change color on click
-// fix toggle buttons background color
-// handle screen over crowding
-// decorate css
 
-//  fix append child margins
-// make grid even
-// fix row overflow and layout 
+// change inline CSS by adding class to fix issue with operator buttons not toggling
+// simulate keyboard press click effect changing color on click
