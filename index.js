@@ -28,7 +28,7 @@ function operate () {
   else if (operateVal === "-") {
     result = subtract (a,b);
   } 
-  else if (operateVal === "x") {
+  else if (operateVal === "×") {
     result = multiply (a,b);
   } 
   else if (operateVal === "÷") {
@@ -42,12 +42,13 @@ function operate () {
     firstNum="0"
     secNum = "";
     operateVal = ""; 
-  } else {
+  }  else {
   currentDisplay.textContent = result.toLocaleString("en-US");
   firstNum = result.toString();
   secNum = "";
   operateVal = ""; 
-}
+  console.log(firstNum);
+  };
 }
 
 //DOM selectors
@@ -88,6 +89,9 @@ window.addEventListener('keydown', function(e) {
     else if (e.key === "Enter") {
       equals.click(); 
       simulateClick (equals);
+    } else if (e.key === "Delete") {
+      del.click(); 
+      simulateClick (del);
     } 
     else if (e.key === "Shift") {
       shift = true;
@@ -116,6 +120,14 @@ numBtn.forEach(button => button.addEventListener('click', function(result) {
     //Prevents multiple decimals
     if (firstNum.includes(".") && button.innerText ===".") {
       return
+    } else if (firstNum==="" && button.innerText ===".") {
+      firstNum = "0";
+    }
+    //Prevent 0's at beginning
+    else if ((firstNum==="" || firstNum==="0") && button.innerText ==="0"){
+      return
+    } else if (firstNum==="0") {
+      firstNum = firstNum.substring(1);
     }
     //Display on button press
     currentDisplay.innerHTML="";
@@ -124,12 +136,21 @@ numBtn.forEach(button => button.addEventListener('click', function(result) {
     populate.textContent = firstNum;
     currentDisplay.appendChild(populate);
     populate.style.margin = "0"
+    console.log(firstNum);
 
 
   //If operator value is pressed and has value, store data into second number variable
   } 
+  //Prevent decimals
   else if (operateVal !== "") {
     if (secNum.includes(".") && button.innerText ===".") {
+      return
+    }
+    else if (secNum==="" && button.innerText ===".") {
+      secNum = "0";
+    }
+    //Prevent 0 in beginning
+    else if ((secNum==="" || secNum==="0") && button.innerText ==="0"){
       return
     }
     currentDisplay.innerHTML="";
@@ -189,7 +210,7 @@ function operatorToggle () {
   else if (operateVal === "-") {
     minus.classList.add('hovered')
   } 
-  else if (operateVal === "x") {
+  else if (operateVal === "×") {
     product.classList.add('hovered')
   } 
   else if (operateVal === "÷") {
@@ -204,7 +225,7 @@ del.addEventListener('click', function(populate) {
     currentDisplay.innerHTML=""
     firstNum = firstNum.slice(0,-1);
     currentDisplay.textContent = firstNum;
-    // if sliced to empty from one character, display 0
+    // if sliced/delete to empty from one character, display 0
     if (firstNum === "") {
       currentDisplay.textContent = "0";
     }
@@ -227,8 +248,6 @@ del.addEventListener('click', function(populate) {
   }
 });
 
-
-
 //Clicks equal button and calls operate function
 equals.addEventListener('click', function () {
   if (operateVal ==="" || secNum==="") {
@@ -240,7 +259,10 @@ equals.addEventListener('click', function () {
 
 // next steps
 // Prevent number overflow
+// Don't allow number to start with 0 
+// 
 
 
-// change inline CSS by adding class to fix issue with operator buttons not toggling
-// simulate keyboard press click effect changing color on click
+// Don't allow number to start with 0 
+// Operator CSS adjustments sizing
+// Mapped additionaL KEYBOARD buttons to calculator

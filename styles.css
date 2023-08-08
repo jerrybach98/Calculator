@@ -70,6 +70,7 @@ button:hover {
 
 #equals {
   background-color: #4ba2ff;
+  font-size: 24px;
 }
 
 #equals.simulateEquals {
@@ -87,6 +88,14 @@ button:hover {
 .operator {
   color: #4ba2ff;
   font-size: 28px;
+}
+
+#decimal, #divsion {
+  font-size: 32px;
+}
+
+#minus {
+  font-size: 38px;
 }
 
 .operator:hover {
