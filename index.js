@@ -34,20 +34,22 @@ function operate () {
   else if (operateVal === "÷") {
     result = divide (a,b);
   } 
-  // Display result 
-  
   //Resets variables for further string calculations after equal is pressed
   if (isNaN(result)) {
     currentDisplay.textContent = "Error"
     firstNum="0"
     secNum = "";
     operateVal = ""; 
-  }  else {
+  }
+  //Display result 
+  else {
   currentDisplay.textContent = result.toLocaleString("en-US");
+    if (currentDisplay.textContent.length>29) {
+      currentDisplay.textContent = Number(result);
+    }
   firstNum = result.toString();
   secNum = "";
   operateVal = ""; 
-  console.log(firstNum);
   };
 }
 
@@ -64,7 +66,7 @@ const minus = document.getElementById("minus");
 const product = document.getElementById("product");
 const division = document.getElementById("division");
 
-//Function to set simulate mouse click on buttons when using keyboard
+//Simulate mouse click on buttons when using keyboard
 function simulateClick (element) {
   if (element===equals) {
     element.classList.add('simulateEquals');
@@ -106,7 +108,7 @@ window.addEventListener('keydown', function(e) {
     } 
 });
 
-//Shift keyboard press check for operators
+//Checks shift key position
 window.addEventListener('keyup', function(e) {
   if (e.key === "Shift") {
     shift = false;
@@ -114,7 +116,7 @@ window.addEventListener('keyup', function(e) {
 });
 
 numBtn.forEach(button => button.addEventListener('click', function(result) {
-  // If operator value is empty, store number inputs into first number variable
+  // If operator is empty, store number inputs into first number variable
   let populate = document.createElement('p');
   if (operateVal === "") {
     //Prevents multiple decimals
@@ -126,23 +128,24 @@ numBtn.forEach(button => button.addEventListener('click', function(result) {
     //Prevent 0's at beginning
     else if ((firstNum==="" || firstNum==="0") && button.innerText ==="0"){
       return
-    } else if (firstNum==="0") {
+    } 
+    else if (firstNum==="0") {
       firstNum = firstNum.substring(1);
-    }
-    //Display on button press
+    } 
+    //Prevent overcrowding 
+    else if (currentDisplay.textContent.length > 24 && firstNum.length > 24) {
+      return
+    } 
+    //Display on button press and stores button presses into variable as string
     currentDisplay.innerHTML="";
-    //Stores button presses into variable as string
     firstNum += button.innerText;
     populate.textContent = firstNum;
     currentDisplay.appendChild(populate);
     populate.style.margin = "0"
-    console.log(firstNum);
-
-
-  //If operator value is pressed and has value, store data into second number variable
   } 
-  //Prevent decimals
+  //If operator has value, store data into second number variable
   else if (operateVal !== "") {
+    //Prevent decimals
     if (secNum.includes(".") && button.innerText ===".") {
       return
     }
@@ -150,9 +153,11 @@ numBtn.forEach(button => button.addEventListener('click', function(result) {
       secNum = "0";
     }
     //Prevent 0 in beginning
-    else if ((secNum==="" || secNum==="0") && button.innerText ==="0"){
+    else if (secNum==="0") {
+      secNum = secNum.substring(1);
+    } else if (currentDisplay.textContent.length > 24 && secNum.length > 24) {
       return
-    }
+    } 
     currentDisplay.innerHTML="";
     secNum += button.innerText;
     populate.textContent = secNum;
@@ -165,6 +170,7 @@ numBtn.forEach(button => button.addEventListener('click', function(result) {
 
 //Toggle background color of selected operator button
 operator.forEach(button => button.addEventListener('click', function(event, populate) {
+  //chain operations
   if (secNum !== "" && operateVal !== "") {
     operate();
   }
@@ -225,7 +231,7 @@ del.addEventListener('click', function(populate) {
     currentDisplay.innerHTML=""
     firstNum = firstNum.slice(0,-1);
     currentDisplay.textContent = firstNum;
-    // if sliced/delete to empty from one character, display 0
+    // if sliced/delete to empty, display 0
     if (firstNum === "") {
       currentDisplay.textContent = "0";
     }
@@ -258,11 +264,8 @@ equals.addEventListener('click', function () {
 );
 
 // next steps
-// Prevent number overflow
-// Don't allow number to start with 0 
-// 
+// Prevent number overflow > limit characters to 25 characters on input
+// up to 29 characters on display, then converted to scientific notation
+// Numbers that are too large for display will be displayed in scientific notation
+// Allow code to divide by 0 and cut out 0 infront of second number
 
-
-// Don't allow number to start with 0 
-// Operator CSS adjustments sizing
-// Mapped additionaL KEYBOARD buttons to calculator
