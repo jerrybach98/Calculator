@@ -262,10 +262,3 @@ equals.addEventListener('click', function () {
   else operate ();
   } 
 );
-
-// next steps
-// Prevent number overflow > limit characters to 25 characters on input
-// up to 29 characters on display, then converted to scientific notation
-// Numbers that are too large for display will be displayed in scientific notation
-// Allow code to divide by 0 and cut out 0 infront of second number
-
