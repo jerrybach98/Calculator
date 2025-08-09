@@ -12,6 +12,6 @@ An online web calculator built with JavaScript, HTML, and CSS, offering a user-f
 ## Thoughts:
 I built this calculator early in my developer journey and it was a milestone project for me. It gave me the real sense of creating something tangible and functional. Looking back now, I can see how far I’ve come in terms of modularizing my code and problem-solving skills.
 
-## Further ehancements:
+## Further enhancements:
 * Refactor and modularize the code using object-oriented programming principles.
 * Add scientific calculator functionality.
